@@ -21,14 +21,14 @@ public class OrderServiceImpl implements OrderService {
 //    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
 
     //변경 후
-    private final MemberRepository memberRepository;
+    private final MemberRepository memberRepository;            //final 키워드를 넣으면 생성자 주입만 사용가능.
     private final DiscountPolicy discountPolicy;              //인터페이스에만 의존.
 
     //생성자 주입: 불변, 필수 의존관게에 사용. 가장 추천하는 방법.
     //수정자 주입: 선택, 변경 가능성이 있는 의존관계에 사용
     //필드 주입: 왠만하면 사용하지 말자. 외부에서 변경이 불가능하다. Configuration 같이 특이한 상황에서는 사용 가능.
 
-    @Autowired      //생성자를 통해서만 의존관계 주입. 생성자가 한개만 있으면 Autowired 생략해도 의존관계 자동주입.
+    //생성자를 통해서만 의존관계 주입. 생성자가 한개만 있으면 Autowired 생략해도 의존관계 자동주입.
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
@@ -42,8 +42,10 @@ public class OrderServiceImpl implements OrderService {
         return new Order(memberId, itemName, itemPrice, discountPrice);
     }
 
-    //테스트 용도 
+    //테스트 용도
     public MemberRepository getMemberRepository() {
         return memberRepository;
     }
+//
+
 }
