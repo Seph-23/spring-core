@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ApplicationContextBasicFindTest {
-    AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+    AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);    //스프링 컨테이너 생성.
 
     @Test
     @DisplayName("빈 이름으로 조회")
@@ -28,18 +28,18 @@ public class ApplicationContextBasicFindTest {
         MemberService memberService = ac.getBean(MemberService.class);
         assertThat(memberService).isInstanceOf(MemberServiceImpl.class);
     }
-
-    @Test
-    @DisplayName("구체 타입으로 조회")
-    void findBeanByName2() {
-        MemberService memberService = ac.getBean("memberService", MemberServiceImpl.class);
-        assertThat(memberService).isInstanceOf(MemberServiceImpl.class);
-    }
-
-    @Test
-    @DisplayName("빈 이름으로 조회X")      //빈이 없을떄 성공하는 테스트.
-    void findBeanByNameX(){
-//        MemberService xxxx = ac.getBean("xxxx", MemberService.class);
-        assertThrows(NoSuchBeanDefinitionException.class, () -> ac.getBean("xxxx", MemberService.class));
-    }
+//
+//    @Test
+//    @DisplayName("구체 타입으로 조회")
+//    void findBeanByName2() {
+//        MemberService memberService = ac.getBean("memberService", MemberServiceImpl.class);
+//        assertThat(memberService).isInstanceOf(MemberServiceImpl.class);
+//    }
+//
+//    @Test
+//    @DisplayName("빈 이름으로 조회X")      //빈이 없을떄 성공하는 테스트.
+//    void findBeanByNameX(){
+////        MemberService xxxx = ac.getBean("xxxx", MemberService.class);
+//        assertThrows(NoSuchBeanDefinitionException.class, () -> ac.getBean("xxxx", MemberService.class));
+//    }
 }

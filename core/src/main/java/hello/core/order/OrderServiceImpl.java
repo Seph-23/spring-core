@@ -9,10 +9,11 @@ import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor        //생성자를 롬복을 통해서 생성해준다.
+//@RequiredArgsConstructor        //생성자를 롬복을 통해서 생성해준다.
 public class OrderServiceImpl implements OrderService {
 
 //    변경 전
@@ -30,11 +31,11 @@ public class OrderServiceImpl implements OrderService {
     //수정자 주입: 선택, 변경 가능성이 있는 의존관계에 사용
     //필드 주입: 왠만하면 사용하지 말자. 외부에서 변경이 불가능하다. Configuration 같이 특이한 상황에서는 사용 가능.
 
-    //생성자를 통해서만 의존관계 주입. 생성자가 한개만 있으면 Autowired 생략해도 의존관계 자동주입.
-//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-//        this.memberRepository = memberRepository;
-//        this.discountPolicy = discountPolicy;
-//    }
+//    생성자를 통해서만 의존관계 주입. 생성자가 한개만 있으면 Autowired 생략해도 의존관계 자동주입.
+    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {

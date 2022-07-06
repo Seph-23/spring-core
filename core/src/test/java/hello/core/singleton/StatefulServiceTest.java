@@ -24,7 +24,7 @@ class StatefulServiceTest {
 
         //threadA: 사용자a 주문 금액 조회
 //        int price = statefulService1.getPrice();
-        System.out.println("price = " + userAPrice);         //하지만 20000원이 나온다, 그 사이에 B사용자가 바꿔버려서.
+        System.out.println("price = " + userAPrice);
 
 //        Assertions.assertThat(statefulService1.getPrice()).isEqualTo(20000);
     }
