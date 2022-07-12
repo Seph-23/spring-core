@@ -18,7 +18,6 @@ import org.springframework.context.annotation.FilterType;
         excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Configuration.class)
 )
 public class AutoAppConfig {
-
     //수동 빈 등록, 자동 빈 등록 오류시 스프링 부트 에러: CoreApplication 실행시 발생.
     // The bean 'memoryMemberRepository', defined in class path resource
     // [hello/core/AutoAppConfig.class], could not be registered.
